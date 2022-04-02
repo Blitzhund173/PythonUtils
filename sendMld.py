@@ -3,7 +3,7 @@ import tkinter as tk
 import json
 
 wind=tk.Tk()
-wind.title("Phonebomb")
+wind.title("Send message")
 wind.geometry("500x200")
 
 tk.Label(wind, text="Phone number").grid(row=0)
