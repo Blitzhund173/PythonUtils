@@ -3,32 +3,22 @@ from pyautogui import click
 import threading
 
 #Defines the main clicking function
-def autoclick():
+def autoclick(threadnum):
     #Murders the cpu
     while True:
         click()
-        #Checks if the f key is pressed and if so it exits
-        if is_pressed("f")==True:
-                break
+        #If the user presses the "f" key, the program will end
+        if is_pressed("f"):
+            print(f"Thread {threadnum} has ended")
+            break
 
-#Defines all threads
-thread0=threading.Thread(target=autoclick, args=())
-thread1=threading.Thread(target=autoclick, args=())
-thread2=threading.Thread(target=autoclick, args=())
-thread3=threading.Thread(target=autoclick, args=())
-thread4=threading.Thread(target=autoclick, args=())
-thread5=threading.Thread(target=autoclick, args=())
+#Defines threads in a list
+threads = []
+for i in range(10):
+    threads.append(threading.Thread(target=autoclick,args=(i,)))
+
 
 #Waits for "q" then starts all the threads
 wait("q")
-thread0.start()
-thread1.start()
-thread2.start()
-thread3.start()
-thread4.start()
-thread5.start()
-#Waits until the thread exits
-thread0.join()
-
-#Just quits because you cant start a dead thread
-quit()
+for i in range(10):
+    threads[i].start()
