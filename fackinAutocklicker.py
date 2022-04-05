@@ -16,6 +16,8 @@ def autoclick(threadnum):
 threads = []
 for i in range(10):
     threads.append(threading.Thread(target=autoclick,args=(i,)))
+    if threads[i].is_alive():
+        print(f"Thread {i} is alive")
 
 
 #Waits for "q" then starts all the threads
