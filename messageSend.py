@@ -9,32 +9,33 @@ root.title("Send message")
 root.geometry("300x200")
 root.resizable(False, False)
 
-#Makes a label saying "Send message" and centres it
-tk.Label(root, text="Send message").grid(row=1,column=5)
+#Preloads the text
+kounterText=ttk.Label(root, text=f"5 Seconds and counting...")
+kounterText.grid(row=9,column=5)
 
+
+#Sets up some variables for later
+times=0
 text=""
 
 #Repeats the text times times
 def send(times):
-    print("Sending message")
+    sleep(5)
     for i in range(times):
         keyboard.write(text)
         keyboard.press_and_release("enter")
         sleep(1)
 
-textInput=tk.Entry(root,textvariable=text)
+#Gets the text from the entry box and sets it to text
+ttk.Entry(root,textvariable=text).grid(row=1,column=5)
+ttk.Label(root, text="Text").grid(row=3,column=5)
+
 
 #Gets reps from a tkinter entry
-repsNum=0
-reps=tk.Entry(root,textvariable=repsNum)
-reps.grid(row=1,column=5)
+ttk.Entry(root,textvariable=times).grid(row=5,column=5)
+#Labels the entry
+ttk.Label(root, text="Times").grid(row=7,column=5)
 
-
-#Get number of times to type the text
-try:
-    times = int(reps.get())
-except:
-    ttk.Label(root, text="Please enter a number").grid(row=2,column=5)
 
 #Sets up the sendButton
 sendButton=ttk.Button(
@@ -42,7 +43,7 @@ sendButton=ttk.Button(
     text="Send",
     command=lambda:send(times)
 )
-sendButton.grid(row=5,column=5)
+sendButton.grid(row=5,column=7)
 
 try:
     from ctypes import windll
