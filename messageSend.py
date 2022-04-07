@@ -12,6 +12,7 @@ root.resizable(False, False)
 #Preloads the text
 kounterText=ttk.Label(root, text=f"5 Seconds and counting...")
 kounterText.grid(row=9,column=5)
+kounterText.pack_forget()
 
 
 #Sets up some variables for later
